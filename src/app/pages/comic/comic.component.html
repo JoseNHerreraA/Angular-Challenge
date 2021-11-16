@@ -1,0 +1,13 @@
+<div class="row row-cols-1 row-cols-md-1 g-4 py-5">
+  <div class="col" *ngFor="let item of comics">
+    <div class="card h-100">
+      <img src="{{item.thumbnail.path}}.{{item.thumbnail.extension}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h2 class="card-title">{{item.title}}</h2>
+        <p class="card-text">
+          {{item.description}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

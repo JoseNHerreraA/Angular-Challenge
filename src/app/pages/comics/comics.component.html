@@ -1,0 +1,27 @@
+<div class="row row-cols-2 row-cols-md-2 g-4 py-5">
+  <div class="col" *ngFor="let item of comics">
+    <div class="card h-100">
+      <img src="{{item.thumbnail.path}}.{{item.thumbnail.extension}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h2 class="card-title">{{item.title}}</h2>
+        <h4><strong>Descripcion</strong></h4>
+        <p class="card-text">
+          {{item.description}}
+        </p>
+        <h4><strong>Creators</strong></h4>
+        <div>
+          <div *ngFor="let creator of item.creators.items">
+            <p style="text-transform: uppercase"><strong>{{creator.role}}:</strong> {{creator.name}}</p>
+          </div>
+        </div>
+      </div>
+      <h4><strong>Characters</strong></h4>
+      <div *ngFor="let character of item.characters.items">
+        <p>{{character.name}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<mat-paginator [length]="total_results" [pageSize]="2" [pageSizeOptions]="[2]" aria-label="Select page"
+  (page)="onPaginate($event)">
+</mat-paginator>

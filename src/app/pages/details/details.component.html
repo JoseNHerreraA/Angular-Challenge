@@ -1,0 +1,64 @@
+<div class="row row-cols-1 row-cols-md-1 g-4 py-5">
+  <div class="col">
+    <div class="card h-100">
+      <img src="{{personaje.thumbnail.path}}.{{personaje.thumbnail.extension}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h2 class="card-title">{{personaje.name}}</h2>
+        <h4><strong>Description</strong></h4>
+        <p class="card-text">
+          {{personaje.description}}
+        </p>
+        <h4><strong>Main Data</strong></h4>
+        <table class="table table-hover">
+          <tr *ngIf="personaje.comics.available > 0 ">
+            <th scope="col">Comics</th>
+            <td>{{personaje.comics.available}}</td>
+            <td><button type="button" style="background-color: #0d6efd;" class="btn btn-primary"
+                (click)="detalles(detail, personaje.comics.collectionURI);">Mostrar</button></td>
+          </tr>
+          <tr *ngIf="personaje.series.available > 0 ">
+            <th scope="col">Series</th>
+            <td>{{personaje.series.available}}</td>
+            <td><button type="button" style="background-color: #0d6efd;" class="btn btn-primary"
+                (click)="detalles(detail, personaje.series.collectionURI);">Mostrar</button></td>
+          </tr>
+          <tr *ngIf="personaje.stories.available > 0">
+            <th scope="col">Stories</th>
+            <td>{{personaje.stories.available}}</td>
+            <td><button type="button" style="background-color: #0d6efd;" class="btn btn-primary"
+                (click)="detalles(stories, personaje.stories.collectionURI);">Mostrar</button></td>
+          </tr>
+          <tr *ngIf="personaje.events.available > 0 ">
+            <th scope="col">Events</th>
+            <td>{{personaje.events.available}}</td>
+            <td><button type="button" style="background-color: #0d6efd;" class="btn btn-primary"
+                (click)="detalles(detail, personaje.events.collectionURI);">Mostrar</button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #detail let-modal>
+  <div class="modal-header">
+    <h1 class="modal-title" id="modal-basic-title" style="text-transform: uppercase">{{title}}</h1>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()">
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-comics [endpoint]="endpoint"></app-comics>
+  </div>
+</ng-template>
+
+<ng-template #stories let-modal>
+  <div class="modal-header">
+    <h1 class="modal-title" id="modal-basic-title" style="text-transform: uppercase">{{title}}</h1>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()">
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-stories [endpoint]="endpoint"></app-stories>
+  </div>
+</ng-template>
