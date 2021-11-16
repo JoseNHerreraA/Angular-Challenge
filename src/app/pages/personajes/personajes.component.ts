@@ -23,6 +23,7 @@ export class PersonajesComponent implements OnInit {
   favoritos: any[] = [];
   selectControl = new FormControl('name');
   name = new FormControl('');
+  add_button : boolean = true;
 
   options = [
     { value: 'name', label: 'Name' },
@@ -39,6 +40,7 @@ export class PersonajesComponent implements OnInit {
     debugger;
     let value = id.split("/");
     this.comicId = value[6];
+    this.add(this.comicId);
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -79,13 +81,11 @@ export class PersonajesComponent implements OnInit {
     });
   }
 
-  add(id: any): boolean{
+  add(id: any): void{
     debugger;
-    let aux = true;
     this.comic_services.getComicImage(id).subscribe((resp: any) => {
-      aux = !this.exist(resp);
+      this.add_button = !this.exist(resp);
     });
-    return aux;
   }
 
 
